@@ -1,5 +1,5 @@
 package org.ucm.tp1.Control.Commands;
-
+import org.ucm.tp1.Control.Exceptions.*;
 import org.ucm.tp1.Logic.Game;
 
 public abstract class Command {
@@ -19,9 +19,9 @@ public abstract class Command {
 		this.help = help;
 	}
 	
-	public abstract boolean execute(Game game);
+	public abstract boolean execute(Game game) throws CommandExecuteException;
 	
-	public abstract Command parse(String[] commandWords);
+	public abstract Command parse(String[] commandWords) throws CommandParseException;
 	
 	protected boolean matchCommandName(String name) {
 		return this.shortcut.equalsIgnoreCase(name) || this.name.equalsIgnoreCase(name);
