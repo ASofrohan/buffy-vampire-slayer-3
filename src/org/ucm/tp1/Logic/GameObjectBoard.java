@@ -18,7 +18,7 @@ public class GameObjectBoard {
 		boolean win = false;	
 		if(objectList.getvRemaining() == 0 && objectList.getvAlive() == 0) {
 			win = true;	//no v left on the board and remaining
-			System.out.println("You won the game!!!");
+			System.out.println("[GAME OVER] Player wins!");
 		}
 		return win;
 	}
@@ -28,7 +28,7 @@ public class GameObjectBoard {
 		for(int i = 0; i < objectList.getGameObjects().size(); i++) {
 			if(objectList.getGameObjects().get(i).getColumn() == (-1)) {
 				lose = true;
-				System.out.println("You lost the game!!!");
+				System.out.println("[GAME OVER] Vampires win!");
 				break;
 			}
 		}
@@ -42,8 +42,6 @@ public class GameObjectBoard {
 	}
 	
 	public boolean addSlayer(int row, int column, Game game){
-		row--;
-		column--;
 		boolean added = false;
 		if(this.player.getCoins() >= 50) {
 			added = objectList.addSlayer(row, column, game);
@@ -53,8 +51,6 @@ public class GameObjectBoard {
 	}
 	
 	public boolean addBankBlood(int row, int column, int cost, Game game){
-		row--;
-		column--;
 		boolean added = false;
 		if(this.player.getCoins() >= cost) {
 			added = objectList.addBankBlood(row, column, cost, game);
@@ -64,24 +60,18 @@ public class GameObjectBoard {
 	}
 	
 	public boolean addVampireCommand(int row, int column, Game game){
-		row--;
-		column--;
 		boolean added = false;
 		added = objectList.addVampireCommand(row, column, game);
 		return added;
 	}
 	
 	public boolean addDraculaCommand(int row, int column, Game game){
-		row--;
-		column--;
 		boolean added = false;
 		added = objectList.addDraculaCommand(row, column, game);
 		return added;
 	}
 	
 	public boolean addExpVampireCommand(int row, int column, Game game){
-		row--;
-		column--;
 		boolean added = false;
 		added = objectList.addExpVampireCommand(row, column, game);
 		return added;

@@ -1,5 +1,6 @@
 package org.ucm.tp1.Control.Commands;
 
+import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 
 public class SuperCoinsCommand extends Command {
@@ -13,7 +14,7 @@ public class SuperCoinsCommand extends Command {
 		return true;
 	}
 	
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		return parseNoParamsCommand(commandWords);
 	}
 }

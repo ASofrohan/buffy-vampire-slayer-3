@@ -11,7 +11,7 @@ import org.ucm.tp1.Logic.Game;
 import org.ucm.tp1.Logic.Level;
 
 public class Main {
-    public static final String version = "2.0 refactor";		
+    public static final String version = "3.0 refactor";		
     public static final String usageMsg = "Usage: Vampire slayer <level> [seed]";
     public static final String welcomeMsg = String.format("Buffy the Vampire Slayer " + version + "%n");
     public static final String levelInfoMsg = "Level must be one of: " + Level.all(", ");

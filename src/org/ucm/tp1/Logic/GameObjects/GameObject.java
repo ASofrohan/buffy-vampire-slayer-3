@@ -75,7 +75,6 @@ public abstract class GameObject implements IAttack{
 		GameObject.totalRefound = totalRefound;
 	}
 	public boolean isAlive() {
-    	System.out.print("ffkhf\n");
 		return isAlive;
 	}
 	public void setAlive(boolean isAlive) {

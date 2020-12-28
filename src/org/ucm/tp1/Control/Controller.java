@@ -29,7 +29,7 @@ public class Controller {
     private boolean refreshDisplay;
     
     public Controller(Game game, Scanner scanner) {
-        this.game = game;;
+        this.game = game;
         this.scanner = scanner;
         this.refreshDisplay = true;
     }
@@ -46,20 +46,15 @@ public class Controller {
     		System.out.println(prompt);
     		String s = scanner.nextLine();
     		String[] parameters = s.toLowerCase().trim().split(" ");
-    		System.out.println("[DEBUG] Executing: " + s);
+    		System.out.println("[DEBUG]: Executing: " + s);
     		try {
     			Command command = CommandGenerator.parseCommand(parameters);
-    		} catch(CommandParseException) {
-    			System.out.println("[ERROR]: " + unknownCommandMsg);
+    			if (command != null) {
+        			refreshDisplay = command.execute(game);		//execute command
+    			}
+    		} catch(GameException ex) {
+    			System.out.println(ex.getMessage() + "\n");
     		}
-    		if (command != null) {
-    			refreshDisplay = command.execute(game);		//execute command
-    		}
-    		else {
-    			System.out.println("[ERROR]: " + unknownCommandMsg);
-    		}
-    	}
-    	System.out.println("Game over.");
-    	
+    	}   	
     }    
 }

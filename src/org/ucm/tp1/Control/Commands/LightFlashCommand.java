@@ -1,5 +1,6 @@
 package org.ucm.tp1.Control.Commands;
 
+import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 import org.ucm.tp1.Logic.GameObjects.IAttack;
 
@@ -26,7 +27,7 @@ public class LightFlashCommand extends Command{
 	}
 	
 	@Override
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		return parseNoParamsCommand(commandWords);
 	}
 }

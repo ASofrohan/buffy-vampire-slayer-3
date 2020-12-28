@@ -22,7 +22,7 @@ public class CommandGenerator {
 			ret = availableCommands[i].parse(commandWords);
 			if (ret != null) break;
 		}
-		if (ret == null) throw new CommandParseException("[ERROR]" + UnknownMessage);
+		if (ret == null) throw new CommandParseException("[ERROR] " + UnknownMessage);
 		return ret;
 	}
 	

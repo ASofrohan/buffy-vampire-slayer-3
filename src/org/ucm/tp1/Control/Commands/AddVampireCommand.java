@@ -1,5 +1,6 @@
 package org.ucm.tp1.Control.Commands;
-
+import org.ucm.tp1.Control.Exceptions.*;
+import org.ucm.tp1.Control.Exceptions.NumberFormatException;
 import org.ucm.tp1.Logic.Game;
 import org.ucm.tp1.Logic.GameObjects.GameObject;
 
@@ -22,7 +23,7 @@ public class AddVampireCommand extends Command{
 	@Override
 	public boolean execute(Game game) {
 	    boolean validCommand = false;
-	    if (posX <= 0 || posX > game.getLevel().getDim_x() || posY <= 0 || posY > game.getLevel().getDim_y()) {		//invalid position
+	    if (posX < 0 || posX >= game.getLevel().getDim_x() || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
 	        System.out.print(incorrectArgsMsg + "\nInvalid position.\n");
 	    }
 	    if (game.getGameObjectBoard().getObjectList().getvRemaining() <= 0) {		//no vampires reamining
@@ -65,12 +66,16 @@ public class AddVampireCommand extends Command{
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {
-		if(commandWords.length == 3 && matchCommandName(commandWords[0])) {
-		    return new AddVampireCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]), " ");
-		}
-		if(commandWords.length == 4 && matchCommandName(commandWords[0])) {
-		    return new AddVampireCommand(Integer.parseInt(commandWords[2]), Integer.parseInt(commandWords[3]), commandWords[1]);
+	public Command parse(String[] commandWords) throws CommandParseException{
+		try {
+			if(commandWords.length == 3 && matchCommandName(commandWords[0])) {
+				return new AddVampireCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]), " ");
+			}
+			if(commandWords.length == 4 && matchCommandName(commandWords[0])) {
+				return new AddVampireCommand(Integer.parseInt(commandWords[2]), Integer.parseInt(commandWords[3]), commandWords[1]);
+			}
+		}catch(java.lang.NumberFormatException e) {
+			throw new NumberFormatException("[ERROR]: Command " + name + ": " + incorrectArgsMsg);
 		}
 		return parseNoParamsCommand(commandWords);
 	}
