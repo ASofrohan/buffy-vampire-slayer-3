@@ -13,7 +13,8 @@ public class CommandGenerator {
 		new AddVampireCommand(),
 		new BankBloodCommand(),
 		new GarlicPushCommand(),
-		new LightFlashCommand()
+		new LightFlashCommand(),
+		new SerializeCommand()
 	};
 	
 	public static Command parseCommand(String[] commandWords) throws CommandParseException{
@@ -36,7 +37,8 @@ public class CommandGenerator {
 				availableCommands[6].helpText() + "%n" +
 				availableCommands[7].helpText() + "%n" +
 				availableCommands[8].helpText() + "%n" +
-				availableCommands[9].helpText() + "%n";
+				availableCommands[9].helpText() + "%n" +
+				availableCommands[10].helpText() + "%n";
 	}
 
 }

@@ -67,6 +67,12 @@ public class Vampire extends GameObject{
 		this.setAlive(false);
 		return true;
 	}
+	
+	@Override
+	public String serialize() {
+		return "V;" + this.getColumn() + ";" + this.getRow() + ";" + this.getHealth() + ";" + this.getStunned() + ";" + this.move() + "\n";
+	}
+	
 	public boolean receiveHealBankBlood() {
 		if(this.health < 3) this.health++;
 		return true;

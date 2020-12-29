@@ -34,11 +34,14 @@ public class ExplosiveVampire extends Vampire{
 			}
 		}		
 	}
-	
+	@Override
 	public String toString() {
     	return "EV[" + super.getHealth() + "]";
     }
-
+	@Override
+	public String serialize() {
+		return "EV;" + this.getColumn() + ";" + this.getRow() + ";" + this.getHealth() + ";" + this.getStunned() + ";" + this.move() + "\n";
+	}
 	public int getExpDammage() {
 		return expDammage;
 	}

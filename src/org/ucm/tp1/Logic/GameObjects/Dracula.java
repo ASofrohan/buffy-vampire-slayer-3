@@ -40,11 +40,14 @@ public class Dracula extends Vampire{
 		}
     	return true;
     } 
-	
+	@Override
 	public String toString() {
     	return "D[" + super.getHealth() + "]";
     }
-	
+	@Override
+	public String serialize() {
+		return "D;" + this.getColumn() + ";" + this.getRow() + ";" + this.getHealth() + ";" + this.getStunned() + ";" + this.move() + "\n";
+	}
 	@Override
 	public boolean receiveLightFlash() {
 		return false;

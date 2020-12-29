@@ -25,18 +25,25 @@ public class Slayer extends GameObject{
 		}
 	}
     
+    @Override
 	public boolean receiveVampireAttack(int damage) {
 		if(this.isAlive()) this.health = this.health-damage;
 		if(this.health <= 0) this.setAlive(false);
 		return true;
 	}
 	
+    @Override
 	public boolean receiveDraculaAttack() {
 		if(this.isAlive()) this.health = 0;
 		if(this.health <= 0) this.setAlive(false);
 		return true;
 	}
-
+	
+    @Override
+	public String serialize() {
+		return "S;" + this.getColumn() + ";" + this.getRow() + ";" + this.getHealth() + "\n";
+	}
+	
 	public boolean receiveLightFlash() {
 		return false;
 	}

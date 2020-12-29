@@ -48,6 +48,21 @@ public class Game implements IPrintable {
     	return generator.nextDouble();
     }
     
+    public String serialize() {
+    	String info = "\nCycles: " + this.cycles + "\n";
+    	info = info + "Coins: " + gameObjectBoard.getPlayer().getCoins() + "\n";
+    	info = info + "Level: " + this.level + "\n";
+    	info = info + "Remaining Vampires: " + gameObjectBoard.getObjectList().getvRemaining() + "\n";
+    	info = info + "Vampires on Board: " + gameObjectBoard.getObjectList().getvAlive() + "\n";
+    	
+    	info = info + "\nGame Object List:\n";
+    	for(int i = 0; i < gameObjectBoard.getObjectList().getGameObjects().size(); i++) {
+    		info = info + gameObjectBoard.getObjectList().getGameObjects().get(i).serialize();
+    	}
+    	info = info + "\n";
+    	return info;
+    }
+    
     public IAttack getAttackableInPosition(int row, int column) {
     	return gameObjectBoard.getObjectPosition(row, column);
     }

@@ -12,7 +12,7 @@ public class BankBlood extends GameObject {
         setTotalRefound(getTotalRefound() + refound);
         deploy(row, column, game);
     }
-	
+	@Override
 	public boolean receiveVampireAttack(int damage) {		//delete bankblood
 		if(this.isAlive()) {
 			this.setAlive(false);
@@ -20,7 +20,7 @@ public class BankBlood extends GameObject {
 		}
 		return true;
 	}
-	
+	@Override
 	public boolean receiveDraculaAttack() {		//delete bankblood
 		if(this.isAlive()) {
 			this.setAlive(false);
@@ -34,9 +34,14 @@ public class BankBlood extends GameObject {
 		if(other != null) other.receiveHealBankBlood();
 	}
 	
+	public String serialize() {
+		return "B;" + this.getColumn() + ";" + this.getRow() + ";" + "1;" + this.getCost() + "\n";
+	}
+	@Override
 	public boolean receiveLightFlash() {
 		return false;
 	}
+	@Override
     public boolean staticObject() {
     	return true;
     }

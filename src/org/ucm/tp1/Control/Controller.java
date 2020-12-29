@@ -40,6 +40,12 @@ public class Controller {
     }
     
     public void run() {
+    	
+    	
+    	//help text change
+    	
+    	
+    	
     	while (!game.getExitGame()){					//exit game
     		if (refreshDisplay) printGame();		//refresh display
     		refreshDisplay = false;
