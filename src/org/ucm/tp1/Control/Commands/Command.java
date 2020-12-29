@@ -11,7 +11,7 @@ public abstract class Command {
 	
 	protected static final String incorrectNumberOfArgsMsg = "Incorrect number of arguments.";
 	protected static final String incorrectArgsMsg = "Incorrect arguments format.";
-	protected static final String invalidPosMsg = "Invalid position.";
+	protected static final String invalidPosMsg = "Out of bounds position.";
 	
 	public Command(String name, String shortcut, String details, String help){
 		this.name = name;

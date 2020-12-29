@@ -40,7 +40,7 @@ public class Controller {
     }
     
     public void run() {
-    	while (!game.isFinished()){					//exit game
+    	while (!game.getExitGame()){					//exit game
     		if (refreshDisplay) printGame();		//refresh display
     		refreshDisplay = false;
     		System.out.println(prompt);
@@ -55,6 +55,8 @@ public class Controller {
     		} catch(GameException ex) {
     			System.out.println(ex.getMessage() + "\n");
     		}
-    	}   	
+    	}  
+    	printGame();
+    	game.isFinished(true);
     }    
 }

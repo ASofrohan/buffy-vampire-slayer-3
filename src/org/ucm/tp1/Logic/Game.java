@@ -31,11 +31,13 @@ public class Game implements IPrintable {
     	gameObjectBoard.addDracula(randomGenerator(seed), level.getDim_y()-1, level.getDim_x()-1, level.getVampireFrequency(), this);
     	gameObjectBoard.addExpVampire(randomGenerator(seed), level.getDim_y()-1, level.getDim_x()-1, level.getVampireFrequency(), this);
     	gameObjectBoard.removeDead();		//remove dead objects
+    	isFinished(false);
     	cycles++;
     }
     
-    public boolean isFinished() {
-    	if(!this.exitGame) this.exitGame = (gameObjectBoard.checkWin() || gameObjectBoard.checkLose());
+    public boolean isFinished(boolean print) {
+    	this.exitGame = (gameObjectBoard.checkWin(print) || gameObjectBoard.checkLose(print));
+    	if(print & !exitGame) System.out.println("[GAME OVER] Nobody wins...");
     	return this.exitGame;
     }
     
@@ -56,11 +58,13 @@ public class Game implements IPrintable {
     
     public String getInfo() {
 
-    	String info = "Number of cycles: " + this.cycles + "\n";
+    	String info = "\n\nNumber of cycles: " + this.cycles + "\n";
     	info = info + "Coins: " + gameObjectBoard.getPlayer().getCoins() + "\n";
     	info = info + "Remaining vampires: " + gameObjectBoard.getObjectList().getvRemaining() + "\n";
     	info = info + "Vampires on the board: " + gameObjectBoard.getObjectList().getvAlive() + "\n";
-    	
+    	if(gameObjectBoard.getObjectList().isDraculaAlive()) {
+    		info = info + "Dracula is alive\n";
+    	}
     	return info;
     }
     

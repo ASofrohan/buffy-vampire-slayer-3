@@ -21,48 +21,35 @@ public class AddVampireCommand extends Command{
 	}
 	
 	@Override
-	public boolean execute(Game game) {
-	    boolean validCommand = false;
-	    if (posX < 0 || posX >= game.getLevel().getDim_x() || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
-	        System.out.print(incorrectArgsMsg + "\nInvalid position.\n");
+	public boolean execute(Game game) throws CommandExecuteException{
+	    boolean refreshDisplay = true;
+	    try {
+		    if (game.getGameObjectBoard().getObjectList().getvRemaining() <= 0) {		//no vampires reamining
+		        throw new NoMoreVampiresException("[ERROR]: No more remaining vampires left");
+		    }
+		    if (posX < 0 || posX >= game.getLevel().getDim_x() || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
+		    	throw new InvalidPositionException("[ERROR]: Command " + name + ": " + invalidPosMsg);
+		    }
+		    else {
+		    	switch (vampireType) {
+		    	case "d":		//dracula
+		    		if(GameObject.isDraculaAlive()) throw new DraculaIsAliveException("[ERROR]: Dracula is alive");
+		    		game.getGameObjectBoard().addDraculaCommand(posY, posX, game);
+		    		break;
+		    	case "e":		//explosive vampire
+		    		game.getGameObjectBoard().addExpVampireCommand(posY, posX, game);
+		    		break;
+		    	case " ":		//vampire
+		    		game.getGameObjectBoard().addVampireCommand(posY, posX, game);
+		    		break;
+		    	default:		//unknown vampire
+		    		throw new CommandExecuteException("[ERROR]: Unknown vampire type");    			    	
+		    	}
+		    }
+	    }catch(CommandExecuteException e) {
+	    	throw new CommandExecuteException(e.getMessage() + "\n[ERROR]: Failed to add vampire.");
 	    }
-	    if (game.getGameObjectBoard().getObjectList().getvRemaining() <= 0) {		//no vampires reamining
-	        System.out.print("[ERROR] No more vampires remaining.\n");
-	    }
-	    else {
-	    	switch (vampireType) {
-	    	case "d":		//dracula
-	    		if(!GameObject.isDraculaAlive()) {
-	    			if (!game.getGameObjectBoard().addDraculaCommand(posY, posX, game)) {
-	    				validCommand = false;
-	    				System.out.println("[ERROR] Could not add Dracula in that position. The position is occupied or you don't have enough coins.");
-	    			}
-	    			else validCommand = true;
-	    		}
-		        else {
-		        	System.out.println("[ERROR] Dracula is already alive");
-		        	validCommand = false;
-		        }
-	    		break;
-	    	case "e":		//explosive vampire
-	    		if (!game.getGameObjectBoard().addExpVampireCommand(posY, posX, game)) {
-		            validCommand = false;
-		            System.out.println("[ERROR] Could not add Explosive Vampire in that position. The position is occupied or you don't have enough coins.");
-		        }
-		        else validCommand = true;
-	    		break;
-	    	case " ":		//vampire
-	    		if (!game.getGameObjectBoard().addVampireCommand(posY, posX, game)) {
-		            validCommand = false;
-		            System.out.println("[ERROR] Could not add Vampire in that position. The position is occupied or you don't have enough coins.");
-		        }
-		        else validCommand = true;
-	    		break;
-	    	default:		//unknown vampire
-	    		System.out.println("[ERROR] Unknown vampire type.");	    			    	
-	    	}
-	    }
-	    return validCommand;
+	    return refreshDisplay;
 	}
 
 	@Override

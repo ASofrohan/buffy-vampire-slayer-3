@@ -2,6 +2,7 @@ package org.ucm.tp1.Control.Commands;
 
 import java.util.Scanner;
 import org.ucm.tp1.Logic.Level;
+import org.ucm.tp1.Logic.GameObjects.GameObject;
 import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 import org.ucm.tp1.Logic.GameObjectBoard;
@@ -33,7 +34,9 @@ public class ResetCommand extends Command {
 			game.setGameObjectBoard(new GameObjectBoard(game.getLevel()));
 			game.setExitGame(false);
 			game.setWin(false);
-			
+			GameObject.setDraculaAlive(false);
+			GameObject.setvAliveStatic(0);
+			GameObject.setTotalRefound(0);
         }
 		return true;
 	}
@@ -46,7 +49,8 @@ public class ResetCommand extends Command {
 	public boolean confirm() {
 		boolean unknown = false;
 	    boolean ret = false;
-	    Scanner scanner = new Scanner(System.in);
+	    @SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
 		do {
 	       System.out.print(confirmationMsg);
 	       System.out.print("\n" + "Command > ");
@@ -55,20 +59,15 @@ public class ResetCommand extends Command {
 	           ret = true;
 	           unknown = false;
 	       }
-	       else if (!input.equalsIgnoreCase("n") || !input.equalsIgnoreCase("no")) {
+	       else if (input.equalsIgnoreCase("n") || input.equalsIgnoreCase("no")) {
 	           ret = false;
 	           unknown = false;
 	       }
 	       else {
 	    	   unknown = true;
-	    	   unknownCommand();
+	    	   System.out.print("Please, write yes or no. ");
 	       }
-		}while(unknown);    
+		}while(unknown);
 	    return ret;
-	}
-	
-	public void unknownCommand() {
-	    System.out.print(unknownCommandMsg + " Please try again.\n");
-	    System.out.print(helpMsg);
 	}
 }

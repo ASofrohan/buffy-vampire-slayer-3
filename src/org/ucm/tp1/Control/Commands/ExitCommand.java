@@ -38,7 +38,8 @@ public class ExitCommand extends Command {
 	public boolean confirm() {		//confirm exit
 		boolean unknown = false;
 	    boolean ret = false;
-	    Scanner scanner = new Scanner(System.in);
+	    @SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
 		do {
 	       System.out.print(confirmationMsg);
 	       System.out.print("\n" + "Command > ");
@@ -47,20 +48,15 @@ public class ExitCommand extends Command {
 	           ret = true;
 	           unknown = false;
 	       }
-	       else if (!input.equalsIgnoreCase("n") || !input.equalsIgnoreCase("no")) {
+	       else if (input.equalsIgnoreCase("n") || input.equalsIgnoreCase("no")) {
 	           ret = false;
 	           unknown = false;
 	       }
 	       else {
 	    	   unknown = true;
-	    	   unknownCommand();
+	    	   System.out.print("Please, write yes or no. ");
 	       }
-		}while(unknown);       
+		}while(unknown); 
 	    return ret;
-	}
-	
-	public void unknownCommand() {
-	    System.out.print(unknownCommandMsg + " Please try again.\n");
-	    System.out.print(helpMsg);
 	}
 }

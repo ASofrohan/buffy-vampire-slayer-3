@@ -20,21 +20,17 @@ public class AddCommand extends Command{
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException{
-	    boolean validCommand = false;
-	    if (posX < 0 || posX >= game.getLevel().getDim_x()-1 || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
-	        throw new InvalidPositionException("[ERROR]: Command " + name + ": " + invalidPosMsg);
-	    }
-	    else {
-	        if (!game.getGameObjectBoard().addSlayer(posY, posX, game)) {		//slayer not added
-	            validCommand = false;
-	            System.out.println("[ERROR] Could not add slayer in that position. The position is occupied or you don't have enough coins.");
-	        }
-	        else {		//update game
-	        	validCommand = true;
-	    	    game.update();
-	        }
-	    }
-	    return validCommand;
+	    boolean refreshDisplay = true;
+	    try {
+	    	if (posX < 0 || posX >= game.getLevel().getDim_x()-1 || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
+	    		throw new InvalidPositionException("[ERROR]: Command " + name + ": " + invalidPosMsg);
+	    	}
+	    	game.getGameObjectBoard().addSlayer(posY, posX, game);		//slayer not added
+	    	game.update();
+		}catch(CommandExecuteException e) {
+			throw new CommandExecuteException(e.getMessage() + "\n[ERROR]: Failed to add slayer.");
+		}
+	    return refreshDisplay;
 	}
 
 	@Override

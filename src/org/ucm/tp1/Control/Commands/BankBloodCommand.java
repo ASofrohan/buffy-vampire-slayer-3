@@ -1,6 +1,8 @@
 package org.ucm.tp1.Control.Commands;
 
+import org.ucm.tp1.Control.Exceptions.CommandExecuteException;
 import org.ucm.tp1.Control.Exceptions.CommandParseException;
+import org.ucm.tp1.Control.Exceptions.InvalidPositionException;
 import org.ucm.tp1.Control.Exceptions.NumberFormatException;
 import org.ucm.tp1.Logic.Game;
 
@@ -21,22 +23,18 @@ public class BankBloodCommand extends Command{
 	}
 	
 	@Override
-	public boolean execute(Game game) {
-		boolean validCommand = false;
-	    if (posX < 0 || posX >= game.getLevel().getDim_x()-1 || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
-	        System.out.print(incorrectArgsMsg + "\nInvalid position.\n");
+	public boolean execute(Game game) throws CommandExecuteException{
+		boolean refreshDisplay = true;
+		try {
+			if (posX < 0 || posX >= game.getLevel().getDim_x()-1 || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
+	    		throw new InvalidPositionException("[ERROR]: Command " + name + ": " + invalidPosMsg);
+	    	}
+	    	game.getGameObjectBoard().addBankBlood(posY, posX, cost, game);		//bankblood not added
+	    	game.update();
+	    }catch(CommandExecuteException e) {
+	    	throw new CommandExecuteException(e.getMessage() + "\n[ERROR]: Failed to add blood bank.");
 	    }
-	    else {
-	        if (!game.getGameObjectBoard().addBankBlood(posY, posX, cost, game)) {		//bankblood not added
-	            validCommand = false;
-	            System.out.println("[ERROR] Could not add bank blood in that position. The position is occupied or you don't have enough coins.");
-	        }
-	        else {
-	        	validCommand = true;		//update game
-	    	    game.update();
-	        }
-	    }
-	    return validCommand;
+	    return refreshDisplay;
 	}
 	
 	@Override

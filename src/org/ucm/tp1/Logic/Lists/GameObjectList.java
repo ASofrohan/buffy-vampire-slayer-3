@@ -2,6 +2,7 @@ package org.ucm.tp1.Logic.Lists;
 import org.ucm.tp1.Logic.GameObjects.*;
 import java.util.*;
 import org.ucm.tp1.Logic.Level;
+import org.ucm.tp1.Control.Exceptions.*;
 import org.ucm.tp1.Logic.Game;
 
 public class GameObjectList {
@@ -21,51 +22,35 @@ public class GameObjectList {
 		this.draculaAlive = false;
 	}
 
-	public boolean addSlayer(int row, int column, Game game){
-		boolean added = false;
-		if(freePos(row, column)) {
-			gameObjects.add(new Slayer(row, column, game));
-			added = true;
-			sCounter++;
-		}
-		return added;
+	public void addSlayer(int row, int column, Game game) throws CommandExecuteException{
+		if(!freePos(row, column)) throw new InvalidPositionException("[ERROR]: Position is occupied.");
+		gameObjects.add(new Slayer(row, column, game));
+		sCounter++;
 	}
 	
-	public boolean addVampireCommand(int row, int column, Game game){
-		boolean added = false;
-		if(freePos(row, column)) {
-			gameObjects.add(new Vampire(row, column, game));
-			added = true;
-			this.vRemaining--;
-			this.vCounter++;
-			this.vAlive = GameObject.getvAliveStatic();
-		}
-		return added;
+	public void addVampireCommand(int row, int column, Game game) throws CommandExecuteException{
+		if(!freePos(row, column)) throw new InvalidPositionException("[ERROR]: Position is occupied.");
+		gameObjects.add(new Vampire(row, column, game));
+		this.vRemaining--;
+		this.vCounter++;
+		this.vAlive = GameObject.getvAliveStatic();
 	}
 	
-	public boolean addDraculaCommand(int row, int column, Game game){
-		boolean added = false;
-		if(freePos(row, column)) {
-			gameObjects.add(new Dracula(row, column, game));
-			added = true;
-			this.vRemaining--;
-			this.vCounter++;
-			this.vAlive = GameObject.getvAliveStatic();
-			this.draculaAlive = GameObject.isDraculaAlive();
-		}
-		return added;
+	public void addDraculaCommand(int row, int column, Game game) throws CommandExecuteException{
+		if(!freePos(row, column)) throw new InvalidPositionException("[ERROR]: Position is occupied.");
+		gameObjects.add(new Dracula(row, column, game));
+		this.vRemaining--;
+		this.vCounter++;
+		this.vAlive = GameObject.getvAliveStatic();
+		this.draculaAlive = GameObject.isDraculaAlive();
 	}
 	
-	public boolean addExpVampireCommand(int row, int column, Game game){
-		boolean added = false;
-		if(freePos(row, column)) {
-			gameObjects.add(new ExplosiveVampire(row, column, game));
-			added = true;
-			this.vRemaining--;
-			this.vCounter++;
-			this.vAlive = GameObject.getvAliveStatic();
-		}
-		return added;
+	public void addExpVampireCommand(int row, int column, Game game) throws CommandExecuteException{
+		if(!freePos(row, column)) throw new InvalidPositionException("[ERROR]: Position is occupied.");
+		gameObjects.add(new ExplosiveVampire(row, column, game));
+		this.vRemaining--;
+		this.vCounter++;
+		this.vAlive = GameObject.getvAliveStatic();
 	}
 	
 	public void addVampire(double rand, int nRows, int nColumns, double frequency, Game game){
@@ -108,13 +93,9 @@ public class GameObjectList {
 		}
 	}
 	
-	public boolean addBankBlood(int row, int column, int cost, Game game) {
-		boolean added = false;
-		if(freePos(row, column)) {
-			gameObjects.add(new BankBlood(row, column, cost, game));
-			added = true;			
-		}
-		return added;
+	public void addBankBlood(int row, int column, int cost, Game game) throws CommandExecuteException{
+		if(!freePos(row, column)) throw new InvalidPositionException("[ERROR]: Position is occupied.");
+		gameObjects.add(new BankBlood(row, column, cost, game));			
 	}
 	
 	public void removeDead() {

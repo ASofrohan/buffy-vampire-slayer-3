@@ -2,6 +2,7 @@ package org.ucm.tp1.Logic;
 import org.ucm.tp1.Logic.Lists.GameObjectList;
 import org.ucm.tp1.Logic.GameObjects.Player;
 import org.ucm.tp1.Logic.GameObjects.IAttack;
+import org.ucm.tp1.Control.Exceptions.*;
 import org.ucm.tp1.Logic.GameObjects.GameObject;
 
 public class GameObjectBoard {
@@ -14,21 +15,21 @@ public class GameObjectBoard {
 		this.objectList = new GameObjectList(l);
 	}
 	
-	public boolean checkWin() {
+	public boolean checkWin(boolean print) {
 		boolean win = false;	
 		if(objectList.getvRemaining() == 0 && objectList.getvAlive() == 0) {
 			win = true;	//no v left on the board and remaining
-			System.out.println("[GAME OVER] Player wins!");
+			if(print) System.out.println("[GAME OVER]: Player wins!");
 		}
 		return win;
 	}
 	
-	public boolean checkLose() {		//vampire column -1
+	public boolean checkLose(boolean print) {		//vampire column -1
 		boolean lose = false;	
 		for(int i = 0; i < objectList.getGameObjects().size(); i++) {
 			if(objectList.getGameObjects().get(i).getColumn() == (-1)) {
 				lose = true;
-				System.out.println("[GAME OVER] Vampires win!");
+				if(print) System.out.println("[GAME OVER]: Vampires win!");
 				break;
 			}
 		}
@@ -41,40 +42,28 @@ public class GameObjectBoard {
 		this.player.setCoins(this.player.getCoins() + GameObject.getTotalRefound());
 	}
 	
-	public boolean addSlayer(int row, int column, Game game){
-		boolean added = false;
-		if(this.player.getCoins() >= 50) {
-			added = objectList.addSlayer(row, column, game);
-			if(added) this.getPlayer().setCoins(this.getPlayer().getCoins()-50);		//update coins
-		}
-		return added;
+	public void addSlayer(int row, int column, Game game) throws CommandExecuteException{
+		if(this.player.getCoins() < 50) throw new NotEnoughCoinsException("[ERROR]: Slayer cost is 50: Not enough coins");
+		objectList.addSlayer(row, column, game);
+		this.getPlayer().setCoins(this.getPlayer().getCoins()-50);		//update coins
 	}
 	
-	public boolean addBankBlood(int row, int column, int cost, Game game){
-		boolean added = false;
-		if(this.player.getCoins() >= cost) {
-			added = objectList.addBankBlood(row, column, cost, game);
-			if(added) this.getPlayer().setCoins(this.getPlayer().getCoins()-cost);		//update coins
-		}
-		return added;
+	public void addBankBlood(int row, int column, int cost, Game game) throws CommandExecuteException{
+		if(this.player.getCoins() < cost)  throw new NotEnoughCoinsException("[ERROR]: Bank cost is " + cost + ": Not enough coins");
+		objectList.addBankBlood(row, column, cost, game);
+		this.getPlayer().setCoins(this.getPlayer().getCoins()-cost);		//update coins
 	}
 	
-	public boolean addVampireCommand(int row, int column, Game game){
-		boolean added = false;
-		added = objectList.addVampireCommand(row, column, game);
-		return added;
+	public void addVampireCommand(int row, int column, Game game) throws CommandExecuteException{
+		objectList.addVampireCommand(row, column, game);
 	}
 	
-	public boolean addDraculaCommand(int row, int column, Game game){
-		boolean added = false;
-		added = objectList.addDraculaCommand(row, column, game);
-		return added;
+	public void addDraculaCommand(int row, int column, Game game) throws CommandExecuteException{
+		objectList.addDraculaCommand(row, column, game);
 	}
 	
-	public boolean addExpVampireCommand(int row, int column, Game game){
-		boolean added = false;
-		added = objectList.addExpVampireCommand(row, column, game);
-		return added;
+	public void addExpVampireCommand(int row, int column, Game game) throws CommandExecuteException{
+		objectList.addExpVampireCommand(row, column, game);
 	}
 	
 	public void addVampire(double rand, int nRows, int nColumns, double frequency, Game game){
