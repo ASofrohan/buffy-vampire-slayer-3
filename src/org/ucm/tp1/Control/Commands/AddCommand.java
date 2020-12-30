@@ -9,11 +9,11 @@ public class AddCommand extends Command{
 	int posY;
 	
 	public AddCommand() {
-		super("add", "a", "details", "help");
+		super("add", "a", "[a]dd <x> <y>", "add a slayer in position x, y");
 	}
 	
 	public AddCommand(int x, int y) {
-		super("add", "a", "details", "help");
+		super("add", "a", "[a]dd <x> <y>", "add a slayer in position x, y");
 		this.posX = x;
 		this.posY = y;
 	}

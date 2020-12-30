@@ -4,15 +4,14 @@ import org.ucm.tp1.Control.Exceptions.CommandExecuteException;
 import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 
-public class SerializeCommand extends Command {
-	SerializeCommand(){
-		super("serialze", "z", "[s]erialize", "shows the game serialized ");
+public class SaveCommand extends Command {
+	
+	public SaveCommand() {
+		super("save", "s", "[s]ave", "save the game state in a file.dat");
 	}
-
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
 		boolean refreshDisplay = false;
-		System.out.print(game.serialize());
 		return refreshDisplay;
 	}
 

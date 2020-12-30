@@ -12,11 +12,11 @@ public class BankBloodCommand extends Command{
 	int cost;
 	
 	public BankBloodCommand() {
-		super("bank", "b", "details", "help");
+		super("bank", "b", "[b]ank <x> <y> <z>", "add a blood bank in position x, y with z cost");
 	}
 	
 	public BankBloodCommand(int x, int y, int cost) {
-		super("bank", "b", "details", "help");
+		super("bank", "b", "[b]ank <x> <y> <z>", "add a blood bank in position x, y with z cost");
 		this.posX = x;
 		this.posY = y;
 		this.cost = cost;

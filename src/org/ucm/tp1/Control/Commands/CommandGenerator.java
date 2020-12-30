@@ -14,7 +14,8 @@ public class CommandGenerator {
 		new BankBloodCommand(),
 		new GarlicPushCommand(),
 		new LightFlashCommand(),
-		new SerializeCommand()
+		new SerializeCommand(),
+		new SaveCommand()
 	};
 	
 	public static Command parseCommand(String[] commandWords) throws CommandParseException{
@@ -28,17 +29,10 @@ public class CommandGenerator {
 	}
 	
 	public static String commandHelp() {
-		return availableCommands[0].helpText() + "%n" +
-				availableCommands[1].helpText() + "%n" +
-				availableCommands[2].helpText() + "%n" +
-				availableCommands[3].helpText() + "%n" +
-				availableCommands[4].helpText() + "%n" +
-				availableCommands[5].helpText() + "%n" +
-				availableCommands[6].helpText() + "%n" +
-				availableCommands[7].helpText() + "%n" +
-				availableCommands[8].helpText() + "%n" +
-				availableCommands[9].helpText() + "%n" +
-				availableCommands[10].helpText() + "%n";
+		String helpTxt = "";
+		for(int i = 0; i < availableCommands.length; i++) {
+			helpTxt = helpTxt + availableCommands[i].helpText() + "\n";
+		}
+		return helpTxt;
 	}
-
 }

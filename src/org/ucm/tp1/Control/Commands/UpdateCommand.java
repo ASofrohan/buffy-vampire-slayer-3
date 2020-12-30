@@ -6,7 +6,7 @@ import org.ucm.tp1.Logic.Game;
 public class UpdateCommand extends Command {
 	
 	public UpdateCommand() {
-		super("none", "n", "details", "help");
+		super("none", "n", "[n]one | []", "update");
 	}
 
 	@Override

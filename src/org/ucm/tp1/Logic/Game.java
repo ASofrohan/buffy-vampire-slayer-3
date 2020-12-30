@@ -59,6 +59,9 @@ public class Game implements IPrintable {
     	for(int i = 0; i < gameObjectBoard.getObjectList().getGameObjects().size(); i++) {
     		info = info + gameObjectBoard.getObjectList().getGameObjects().get(i).serialize();
     	}
+    	if(gameObjectBoard.getObjectList().getGameObjects().size() < 1) {
+    		info = info + "Game Object List is empty\n";
+    	}
     	info = info + "\n";
     	return info;
     }
