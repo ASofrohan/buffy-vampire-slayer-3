@@ -37,7 +37,7 @@ public class Game implements IPrintable {
     
     public boolean isFinished(boolean print) {
     	this.exitGame = (gameObjectBoard.checkWin(print) || gameObjectBoard.checkLose(print));
-    	if(print & !exitGame) System.out.println("[GAME OVER] Nobody wins...");
+    	if(print & !exitGame) System.out.println("[GAME OVER] Nobody wins...");		//command exit
     	return this.exitGame;
     }
     

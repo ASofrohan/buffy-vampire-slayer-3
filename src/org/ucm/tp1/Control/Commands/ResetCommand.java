@@ -17,7 +17,7 @@ public class ResetCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		if (confirm()) {		//reset attributes
+		if (confirm()) {		//reset game attributes
 			game.setSeed(game.getSeedBackup());
 			game.setCycles(0);
 			game.setGameObjectBoard(new GameObjectBoard(game.getLevel()));

@@ -7,10 +7,10 @@ import org.ucm.tp1.Logic.Game;
 
 public class GameObjectList {
 	private ArrayList<GameObject>gameObjects;
-	private int vRemaining;	//restar cada vez que aparezca uno
+	private int vRemaining;	//v remaining
 	private int vAlive;		//v on board
-	private int vCounter;	//vampiros que han aparecido
-	private int sCounter;	//siguiente slayer
+	private int vCounter;	//total vampires
+	private int sCounter;	//n slayers
 	private boolean draculaAlive;
 	
 	public GameObjectList(Level l) {

@@ -1,6 +1,5 @@
 package org.ucm.tp1.Control.Commands;
 import java.util.Scanner;
-
 import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 

@@ -54,7 +54,7 @@ public class AddVampireCommand extends Command{
 
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException{
-		try {
+		try {		//return command with attributes
 			if(commandWords.length == 3 && matchCommandName(commandWords[0])) {
 				return new AddVampireCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]), " ");
 			}

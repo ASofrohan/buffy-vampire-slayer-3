@@ -29,7 +29,7 @@ public class BankBloodCommand extends Command{
 			if (posX < 0 || posX >= game.getLevel().getDim_x()-1 || posY < 0 || posY >= game.getLevel().getDim_y()) {		//invalid position
 	    		throw new InvalidPositionException("[ERROR]: Command " + name + ": " + invalidPosMsg);
 	    	}
-	    	game.getGameObjectBoard().addBankBlood(posY, posX, cost, game);		//bankblood not added
+	    	game.getGameObjectBoard().addBankBlood(posY, posX, cost, game);
 	    	game.update();
 	    }catch(CommandExecuteException e) {
 	    	throw new CommandExecuteException(e.getMessage() + "\n[ERROR]: Failed to add blood bank.");

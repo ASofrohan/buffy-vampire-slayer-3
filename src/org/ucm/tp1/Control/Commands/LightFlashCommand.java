@@ -16,7 +16,7 @@ public class LightFlashCommand extends Command{
 	public boolean execute(Game game) throws CommandExecuteException{
 		boolean refreshDisplay = true;
 		try {
-			if(game.getGameObjectBoard().getPlayer().getCoins() < 50) {
+			if(game.getGameObjectBoard().getPlayer().getCoins() < 50) {		//enough coins
 				throw new NotEnoughCoinsException("[ERROR]: Light flash cost is 50: Not enough coins");
 			}
 			game.getGameObjectBoard().getPlayer().setCoins(game.getGameObjectBoard().getPlayer().getCoins()-50);

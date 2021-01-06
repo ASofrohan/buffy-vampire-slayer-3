@@ -12,7 +12,7 @@ public class SerializeCommand extends Command {
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
 		boolean refreshDisplay = false;
-		System.out.print(game.serialize());
+		System.out.print(game.serialize());		//print game info
 		return refreshDisplay;
 	}
 

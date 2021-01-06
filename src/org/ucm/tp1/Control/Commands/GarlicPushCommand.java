@@ -18,8 +18,8 @@ public class GarlicPushCommand extends Command{
 			if(game.getGameObjectBoard().getPlayer().getCoins() < 10) {
 				throw new NotEnoughCoinsException("[ERROR]: Garlic push cost is 10: Not enough coins");
 			}
-			//garlic push to every objects
 			game.getGameObjectBoard().getPlayer().setCoins(game.getGameObjectBoard().getPlayer().getCoins()-10);
+			//garlic push to every object
 			for(int i = 0; i < game.getGameObjectBoard().getObjectList().getGameObjects().size() ; i++ ) {
 				IAttack other = game.getGameObjectBoard().getObjectList().getGameObjects().get(i);
 				if(other != null) other.receiveGarlicPush();

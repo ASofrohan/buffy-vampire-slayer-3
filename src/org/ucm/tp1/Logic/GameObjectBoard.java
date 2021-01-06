@@ -39,7 +39,7 @@ public class GameObjectBoard {
 	public void update(boolean addCoins){
 		if(addCoins) this.player.setCoins(this.player.getCoins()+10);		//add coins
 		objectList.move();		//move all
-		this.player.setCoins(this.player.getCoins() + GameObject.getTotalRefound());
+		this.player.setCoins(this.player.getCoins() + GameObject.getTotalRefound());		//blood bank refound
 	}
 	
 	public void addSlayer(int row, int column, Game game) throws CommandExecuteException{

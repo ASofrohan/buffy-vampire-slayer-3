@@ -17,12 +17,13 @@ public class SaveCommand extends Command {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("File name where you want to save the game:\n");
-		String fileName = scanner.nextLine();
+		String fileName = scanner.nextLine();		//enter file name
 		fileName += ".dat";
 		File fileOut = new File(fileName);
+		
 		try{
 		BufferedWriter outSource = new BufferedWriter(new FileWriter(fileOut));
-		String data = "Buffy the Vampire Slayer v3.0\n" + game.serialize();
+		String data = "Buffy the Vampire Slayer v3.0\n" + game.serialize();		//add game info
 		outSource.write(data);
 		outSource.close();
 		System.out.print("Game successfully saved in file " + fileName + "\n");
