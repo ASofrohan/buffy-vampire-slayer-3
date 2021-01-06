@@ -1,5 +1,4 @@
-//Asier GoÃ±i Ancho
-//Flaviu Emanuel Hongu
+//Asier Goñi Ancho
 //TP1 UCM
 
 package org.ucm.tp1;
