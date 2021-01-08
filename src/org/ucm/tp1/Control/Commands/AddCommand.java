@@ -42,6 +42,9 @@ public class AddCommand extends Command{
 				throw new NumberFormatException("[ERROR]: Command " + name + ": " + incorrectArgsMsg);
 			}
 		}
+		else if (commandWords.length == 1 && matchCommandName(commandWords[0])) {
+			throw new CommandParseException("[ERROR]: Command " + name + ": " + incorrectNumberOfArgsMsg);
+		}
 		return parseNoParamsCommand(commandWords);
 	}
 }

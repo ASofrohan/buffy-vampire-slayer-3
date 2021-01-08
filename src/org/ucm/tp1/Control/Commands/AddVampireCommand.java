@@ -10,11 +10,11 @@ public class AddVampireCommand extends Command{
 	String vampireType;
 	
 	public AddVampireCommand() {
-		super("vampire", "v", "[v]ampire <z> <x> <y>", "add a vampire z type in position x, y");
+		super("vampire", "v", "[v]ampire [<type>] <x> <y>", "add a vampire type in position x, y");
 	}
 	
 	public AddVampireCommand(int x, int y, String vampireType) {
-		super("vampire", "v", "[v]ampire <z> <x> <y>", "add a vampire z type in position x, y");
+		super("vampire", "v", "[v]ampire [<type>] <x> <y>", "add a vampire type in position x, y");
 		this.posX = x;
 		this.posY = y;
 		this.vampireType = vampireType;
@@ -63,6 +63,9 @@ public class AddVampireCommand extends Command{
 			}
 		}catch(java.lang.NumberFormatException e) {
 			throw new NumberFormatException("[ERROR]: Command " + name + ": " + incorrectArgsMsg);
+		}
+		if (commandWords.length == 1 && matchCommandName(commandWords[0])) {
+			throw new CommandParseException("[ERROR]: Command " + name + ": " + incorrectNumberOfArgsMsg);
 		}
 		return parseNoParamsCommand(commandWords);
 	}

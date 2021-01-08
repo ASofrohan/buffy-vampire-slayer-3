@@ -9,7 +9,7 @@ import org.ucm.tp1.Logic.GameObjects.IAttack;
 public class LightFlashCommand extends Command{
 	
 	public LightFlashCommand() {
-		super("light", "l", "[l]ight", "deal 1 damage to every vampire unless dracula");
+		super("light", "l", "[l]ight", "kills all the vampires");
 	}
 	
 	@Override

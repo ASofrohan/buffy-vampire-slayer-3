@@ -8,7 +8,7 @@ import org.ucm.tp1.Logic.GameObjects.IAttack;
 
 public class GarlicPushCommand extends Command{
 	public GarlicPushCommand() {
-		super("garlic", "g", "[g]arlic", "push 1 position back every vampire");
+		super("garlic", "g", "[g]arlic", "pushes back vampires");
 	}
 	
 	@Override

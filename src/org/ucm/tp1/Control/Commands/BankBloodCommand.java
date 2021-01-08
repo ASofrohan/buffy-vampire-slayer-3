@@ -12,7 +12,7 @@ public class BankBloodCommand extends Command{
 	int cost;
 	
 	public BankBloodCommand() {
-		super("bank", "b", "[b]ank <x> <y> <z>", "add a blood bank in position x, y with z cost");
+		super("bank", "b", "[b]ank <x> <y> <z>", "add a blood bank with cost z in position x, y");
 	}
 	
 	public BankBloodCommand(int x, int y, int cost) {
@@ -45,6 +45,9 @@ public class BankBloodCommand extends Command{
 			}catch(java.lang.NumberFormatException e) {
 				throw new NumberFormatException("[ERROR]: Command " + name + ": " + incorrectArgsMsg);
 			}
+		}
+		else if (commandWords.length == 1 && matchCommandName(commandWords[0])) {
+			throw new CommandParseException("[ERROR]: Command " + name + ": " + incorrectNumberOfArgsMsg);
 		}
 		return parseNoParamsCommand(commandWords);
 	}

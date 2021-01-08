@@ -6,7 +6,7 @@ import org.ucm.tp1.Logic.Game;
 public class SuperCoinsCommand extends Command {
 	
 	public SuperCoinsCommand() {
-		super("coins", "c", "[c]oins", "give 1000 coins to the player");
+		super("coins", "c", "[c]oins", "add 1000 coins");
 	}
 	
 	public boolean execute(Game game) {
