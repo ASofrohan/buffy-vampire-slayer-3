@@ -22,14 +22,24 @@ public class SaveCommand extends Command {
 		boolean refreshDisplay = false;
 		filename += ".dat";
 		File fileOut = new File(filename);
+		BufferedWriter outSource = null;
+		FileWriter fw = null;
 		try{
-		BufferedWriter outSource = new BufferedWriter(new FileWriter(fileOut));
+		fw = new FileWriter(fileOut);
+		outSource = new BufferedWriter(fw);
 		String data = "Buffy the Vampire Slayer v3.0\n" + game.serialize();		//add game info
 		outSource.write(data);
-		outSource.close();
 		System.out.print("Game successfully saved in file " + filename + "\n");
 		}catch(IOException e) {
 			throw new CommandExecuteException("[ERROR]: Failed to create file " + filename + "\n[ERROR]: Failed to save game");
+		}finally {
+			if(outSource != null) {
+				try{
+					outSource.close();
+				}catch (Exception ignore) {
+					//nothing to do
+				}
+			}
 		}
 		return refreshDisplay;
 	}
