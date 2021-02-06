@@ -5,15 +5,15 @@ import org.ucm.tp1.Control.Exceptions.CommandExecuteException;
 import org.ucm.tp1.Control.Exceptions.CommandParseException;
 import org.ucm.tp1.Logic.Game;
 
-public class LoadCommand extends Command {
+public class ReloadCommand extends Command {
 	
 	String filename;
 	
-	public LoadCommand() {
+	public ReloadCommand() {
 		super("reload", "r", "[r]eload <filename>", "reload the game state from a file.dat");
 	}
 	
-	public LoadCommand(String filename) {
+	public ReloadCommand(String filename) {
 		super("reload", "r", "[r]eload <filename>", "reload the game state from a file.dat");
 		this.filename = filename;
 	}
@@ -45,7 +45,7 @@ public class LoadCommand extends Command {
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException {
 		if(commandWords.length == 2 && matchCommandName(commandWords[0])) {			//return command with attributes
-			return new LoadCommand(commandWords[1]);
+			return new ReloadCommand(commandWords[1]);
 		}
 		else if (commandWords.length == 1 && matchCommandName(commandWords[0])) {
 			throw new CommandParseException("[ERROR]: Command " + name + ": " + incorrectNumberOfArgsMsg);

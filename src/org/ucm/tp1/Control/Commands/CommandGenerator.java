@@ -15,7 +15,8 @@ public class CommandGenerator {
 		new GarlicPushCommand(),
 		new LightFlashCommand(),
 		new SerializeCommand(),
-		new SaveCommand()
+		new SaveCommand(),
+		new ReloadCommand()
 	};
 	
 	public static Command parseCommand(String[] commandWords) throws CommandParseException{
