@@ -10,11 +10,11 @@ public class ReloadCommand extends Command {
 	String filename;
 	
 	public ReloadCommand() {
-		super("reload", "r", "[r]eload <filename>", "reload the game state from a file.dat");
+		super("reload", "rl", "[r]e[l]oad <filename>", "reload the game state from a file.dat");
 	}
 	
 	public ReloadCommand(String filename) {
-		super("reload", "r", "[r]eload <filename>", "reload the game state from a file.dat");
+		super("reload", "rl", "[r]e[l]oad <filename>", "reload the game state from a file.dat");
 		this.filename = filename;
 	}
 	
