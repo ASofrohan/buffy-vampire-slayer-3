@@ -27,6 +27,7 @@ public class SaveCommand extends Command {
 		try{
 		fw = new FileWriter(fileOut);
 		outSource = new BufferedWriter(fw);
+		
 		String data = "Buffy the Vampire Slayer v3.0\n" + game.serialize();		//add game info
 		outSource.write(data);
 		System.out.print("Game successfully saved in file " + filename + "\n");

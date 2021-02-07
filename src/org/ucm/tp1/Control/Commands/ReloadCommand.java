@@ -29,7 +29,19 @@ public class ReloadCommand extends Command {
 			fr = new FileReader(fileIn);
 			inSource = new BufferedReader(fr);
 			//inSource = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println(inSource.read());
+			System.out.println(inSource.readLine());
+			System.out.println(inSource.readLine());
+			System.out.println(inSource.readLine());
+			System.out.println(inSource.readLine());
+			System.out.println(inSource.readLine());
+			String s = inSource.readLine();
+			String[] sSplit = s.trim().split(" ");
+			for(int i = 0; i < sSplit.length; i++) {
+			System.out.println(sSplit[i]+"\n");
+			}
+			int c = inSource.read();
+			char a = (char)c;
+			System.out.println(a+"\n");
 		}catch(IOException e){
 			throw new CommandExecuteException("[ERROR]: Failed to read from file " + filename + "\n[ERROR]: Failed to load game");
 		}finally {
