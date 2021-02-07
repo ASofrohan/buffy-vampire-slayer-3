@@ -26,7 +26,8 @@ public class ReloadCommand extends Command {
 		BufferedReader inSource = null;
 		try {
 			fr = new FileReader(filename);
-			inSource = new BufferedReader(fr);
+			//inSource = new BufferedReader(fr);
+			inSource = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println(inSource.read());
 		}catch(IOException e){
 			throw new CommandExecuteException("[ERROR]: Failed to read from file " + filename + "\n[ERROR]: Failed to load game");
