@@ -22,12 +22,13 @@ public class ReloadCommand extends Command {
 	public boolean execute(Game game) throws CommandExecuteException {
 		boolean refreshDisplay = false;
 		filename += ".dat";
+		File fileIn =new File(filename);
 		FileReader fr = null;
 		BufferedReader inSource = null;
 		try {
-			fr = new FileReader(filename);
-			//inSource = new BufferedReader(fr);
-			inSource = new BufferedReader(new InputStreamReader(System.in));
+			fr = new FileReader(fileIn);
+			inSource = new BufferedReader(fr);
+			//inSource = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println(inSource.read());
 		}catch(IOException e){
 			throw new CommandExecuteException("[ERROR]: Failed to read from file " + filename + "\n[ERROR]: Failed to load game");
